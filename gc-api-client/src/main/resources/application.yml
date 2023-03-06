@@ -1,0 +1,26 @@
+server:
+  port: 8080
+spring:
+  security:
+    oauth2:
+      client:
+        registration:
+          guitar-cloud-client-oidc:
+            provider: guitarcloud
+            client-id: guitar-cloud-client
+            client-secret: secret
+            authorization-grant-type: authorization_code
+            redirect-uri: "http://127.0.0.1:8080/login/oauth2/code/{registrationId}"
+            scope: openid
+            client-name: guitar-cloud-client-oidc
+          guitar-cloud-client-authorization-code:
+            provider: guitarcloud
+            client-id: guitar-cloud-client
+            client-secret: secret
+            authorization-grant-type: authorization_code
+            redirect-uri: "http://127.0.0.1:8080/authorized"
+            scope: guitars.read,guitars.edit,guitars.delete
+            client-name: guitar-cloud-client-authorization-code
+        provider:
+          guitarcloud:
+            issuer-uri: http://auth-server:9000
